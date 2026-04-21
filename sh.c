@@ -136,7 +136,18 @@ void handle_simple_cmd(struct execcmd *ecmd) {
 
 void handle_redirection(struct redircmd *rcmd) {
     /* Task 3: Implement the code below to handle input/output redirection. */
-    fprintf(stderr, "redir not implemented\n");
+    int fd = open(rcmd->file, rcmd->mode, 0644);  // file permissions
+    if (fd == -1) {
+        fprintf(stderr, "cannot open file: %s\n", rcmd->file);
+        return;
+    }
+
+    int newfd = dup2(fd, rcmd->fd);
+    close(fd);
+    if (newfd  == -1) {
+        fprintf(stderr, "redirection failed\n");
+        return;
+    }
     /* END OF TASK 3 */
 }
 
