@@ -25,8 +25,8 @@ The group members declare that they have not copied material from the Internet
 Fill in the lines below with the name and email of the group members.
 Replace XX with the contribution of each group member in the development of the work.
 
-Giordano Henrique Liporati <ghl2023@ufmg.br> XX%
-João Gabriel Guimarães Alves Vaz <jgvaz@ufmg.br> XX%
+Giordano Henrique Liporati <ghl2023@ufmg.br> 50%
+João Gabriel Guimarães Alves Vaz <jgvaz@ufmg.br> 50%
 
 3. Solutions
 
@@ -35,6 +35,11 @@ Briefly describe the solutions implemented for this project and justify their ch
 4. Bibliographic references
 
 Add the bibliographic references here.
+
+https://www.geeksforgeeks.org/c/exec-family-of-functions-in-c/
+https://www.geeksforgeeks.org/c/dup-dup2-linux-system-call/
+https://stackoverflow.com/questions/1658476/c-fopen-vs-open
+https://man7.org/linux/man-pages/man2/pipe.2.html
 
 */
 
