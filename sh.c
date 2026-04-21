@@ -130,7 +130,7 @@ int fork1(void) {
 
 void handle_simple_cmd(struct execcmd *ecmd) {
     /* Task 2: Implement the code below to execute simple commands. */
-    execvp(ecmd->argv[0], &(ecmd->argv[1]));
+    execvp(ecmd->argv[0], ecmd->argv);
     /* END OF TASK 2 */
 }
 
