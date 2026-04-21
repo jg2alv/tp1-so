@@ -123,7 +123,7 @@ int fork1(void) {
     It should print a message if the fork fails, otherwise return the process ID of the child process (or -1 if the fork fails).
     */
     int pid = fork();
-    if(pid == -1) fprint(stderr, "Fork function failed\n");
+    if (pid == -1) fprintf(stderr, "Fork function failed\n");
     return pid;
     /* END OF TASK 1 */
 }
