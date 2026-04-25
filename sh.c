@@ -234,7 +234,7 @@ int main(void) {
         if (buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' ') {
             buf[strlen(buf) - 1] = 0;
             if (chdir(buf + 3) < 0)
-                fprintf(stderr, "process does not exist\n");
+                fprintf(stderr, "bash: cd: %s: No such file or directory\n", buf + 3);
             continue;
         }
         /* END OF TASK 5 */
