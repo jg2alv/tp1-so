@@ -30,7 +30,28 @@ João Gabriel Guimarães Alves Vaz <jgvaz@ufmg.br> 50%
 
 3. Solutions
 
-Briefly describe the solutions implemented for this project and justify their choices.
+Task 1: a solucao foi simplesmente a implementacao de
+um wrapper para a funcao `fork()`.
+
+Task 2: `execvp()` pega como argumentos um char* pro arquivo
+a ser executado e outro para os argumentos a serem enviados.
+Como recebemos, do wrapper `handle_simple_cmd()`, um struct
+que contem um char* para argumentos, faz sentido usar essa
+funcao para implementar a solucao, enviando a ela como primeiro
+parametro o primeiro argumento (do char* do) struct e como segundo
+parametro o restante do char* do struct.
+
+Task 3: Uso do `dup2()` para implementar redirecionamentos.
+
+Task 4: Uso do `pipe()`, do anteriomente-definida `fork1()` e do
+`dup2()` novamente para implementar comandos PIPE. Atencao especial para
+os multiplos casos de erro: falha no pipe, falha no fork e falha na
+duplicacao do file descriptor. Chamada para runcmd simples ao final
+que depende de estarmos no processo-pai ou no -filho.
+
+Task 5: Explicacao da distincao existente entre processos e primitivas
+do shell. Correcao da mensagem de erro (que poderia ate ser valida num
+contexto de processos, mas que falha dado que lidamos com diretorios).
 
 4. Bibliographic references
 
@@ -202,8 +223,13 @@ int main(void) {
     while (getcmd(buf, sizeof(buf)) >= 0) {
         /* Task 5: Explain the purpose of the if statement below and correct the error message.
         Why is the current error message incorrect? Justify the new message. */
-        /* Answer:
-
+        /* Answer: O if abaixo serve para lidar com comandos `cd`. Esses comandos servem para
+        alterar o cwd (current working directory) do shell. Diferentemente de comandos como `ls`,
+        o `cd` nao eh um processo, e sim um built-in do shell. Portanto, eh necessario lidar com
+        ele de outra forma (ie, NAO seria uma solucao rodar runcmd() enviando ele como argumento).
+        A mensagem de erro "process does not exist" eh invalida porque a linha anterior
+        `if(chddir(buf+3) < 0)` falha quando o DIRETORIO passado ao `cd` nao existe, e nao o
+        processo (ate porque `cd`, como explicado, nao eh processo).
          */
         if (buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' ') {
             buf[strlen(buf) - 1] = 0;
